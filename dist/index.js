@@ -66,12 +66,75 @@
       };
     });
 
+    var state$1 = {
+      visible: true
+    };
+
+    var actions$1 = {
+      onClose: function onClose() {
+        return function (state) {
+          return { visible: false };
+        };
+      }
+    };
+
+    var view$1 = function view(state) {
+      return state.visible ? hyperapp.h(
+        'div',
+        { 'class': 'hc-toast-wrapper' },
+        hyperapp.h(
+          'div',
+          { 'class': 'hc-toast-container' },
+          hyperapp.h('i', { 'class': 'hc-toast-icon hc-toast-icon-' + state.type }),
+          state.content ? hyperapp.h(
+            'p',
+            { 'class': 'hc-toast-content' },
+            state.content
+          ) : null
+        )
+      ) : null;
+    };
+
+    var Toast = (function (container) {
+      return function (options) {
+        if (typeof options === 'string') {
+          options = {
+            content: options,
+            duration: 2000,
+            type: 'info'
+          };
+        }
+
+        var toast = hyperapp.app(_extends({}, state$1, options), actions$1, view$1, container);
+
+        if (options.type !== 'loading') {
+          setTimeout(toast.onClose, options.duration);
+        } else {
+          return toast;
+        }
+      };
+    });
+
     var container = document.createElement('div');
     container.setAttribute('role', 'dialog');
     document.body.appendChild(container);
+    document.body.ontouchstart = function () {};
 
     var hc = {
-      alert: Alert(container)
+      alert: Alert(container),
+      toast: Toast(container),
+      loading: function loading(options) {
+        if (typeof options === 'string') {
+          options = {
+            content: options,
+            type: 'loading'
+          };
+        }
+
+        options.type = 'loading';
+
+        Toast(container)(options);
+      }
     };
 
     hyperapp.app(null, null, function () {

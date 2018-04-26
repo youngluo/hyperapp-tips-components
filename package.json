@@ -23,6 +23,7 @@
     "eslint-plugin-import": "^2.8.0",
     "hyperapp": "^1.2.5",
     "less": "^2.7.3",
+    "postcss-image-inliner": "^2.0.0",
     "rollup": "^0.58.2",
     "rollup-plugin-babel": "^3.0.4",
     "rollup-plugin-browsersync": "^0.2.6",

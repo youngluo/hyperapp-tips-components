@@ -11,30 +11,30 @@ const actions = {
   },
 };
 
-const render = (content, type = 'error') => {
-  const toast = app(
-    state,
-    actions,
-    (state, actions) => (
-      state.visible ?
-        <div class="toast-wrapper">
-          <div class="toast-container">
-            <i class={`toast-icon toast-icon-${type}`}></i>
-            {content ? <p class="toast-content">{content}</p> : ''}
-          </div>
-        </div> : ''
-    ),
-    document.getElementById('global-component'),
-  );
+const view = state =>
+  (state.visible ? (
+    <div class="hc-toast-wrapper">
+      <div class="hc-toast-container">
+        <i class={`hc-toast-icon hc-toast-icon-${state.type}`} />
+        {state.content ? <p class="hc-toast-content">{state.content}</p> : null}
+      </div>
+    </div>
+  ) : null);
 
-  if (type !== 'loading') {
-    setTimeout(toast.onClose, 2000);
+export default container => (options) => {
+  if (typeof options === 'string') {
+    options = {
+      content: options,
+      duration: 2000,
+      type: 'info',
+    };
   }
 
-  return toast;
+  const toast = app({ ...state, ...options }, actions, view, container);
+
+  if (options.type !== 'loading') {
+    setTimeout(toast.onClose, options.duration);
+  } else {
+    return toast;
+  }
 };
-
-export const loading = (text = '') => render(text, 'loading').onClose;
-
-export default render;
-
