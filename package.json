@@ -1,0 +1,51 @@
+{
+  "name": "hc-feedback",
+  "version": "1.0.0",
+  "description": "A feedback components based on hyperapp.js",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node_modules/.bin/rollup -c rollup.config.js",
+    "prod": "node_modules/.bin/rollup -c rollup.config.js --environment build:production"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "hyperapp": "^1.2.5"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.2.3",
+    "babel-core": "^6.26.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-es2015-rollup": "^3.0.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "eslint": "^4.14.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "hyperapp": "^1.2.5",
+    "less": "^2.7.3",
+    "rollup": "^0.58.2",
+    "rollup-plugin-babel": "^3.0.4",
+    "rollup-plugin-browsersync": "^0.2.6",
+    "rollup-plugin-commonjs": "^9.1.0",
+    "rollup-plugin-conditional": "^1.1.1",
+    "rollup-plugin-filesize": "^1.5.0",
+    "rollup-plugin-license": "^0.6.0",
+    "rollup-plugin-postcss": "^1.6.1",
+    "rollup-plugin-progress": "^0.4.0",
+    "rollup-plugin-uglify": "^3.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/youngluo/hyperapp-feedback-components.git"
+  },
+  "keywords": [
+    "hyperapp",
+    "toast",
+    "alert",
+    "confirm"
+  ],
+  "author": "Young Luo",
+  "bugs": {
+    "url": "https://github.com/youngluo/hyperapp-feedback-components/issues"
+  },
+  "homepage": "https://github.com/youngluo/hyperapp-feedback-components#readme"
+}

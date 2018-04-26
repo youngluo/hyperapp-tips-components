@@ -1,0 +1,39 @@
+{
+  "extends": "airbnb-base",
+  "plugins": [
+    "import"
+  ],
+  "globals": {
+    "document": true,
+    "window": true,
+    "__API__": true,
+    "__ACCOUNT_API__": true,
+    "__CLIENT_ID__": true,
+    "__TEXT__": true,
+    "initNECaptcha": true
+  },
+  "rules": {
+    "import/no-extraneous-dependencies": "off",
+    "import/prefer-default-export": "off",
+    "import/no-dynamic-require": "off",
+    "import/no-unresolved": "off",
+    "object-curly-newline": "off",
+    "import/extensions": "off",
+    "consistent-return": "off",
+    "no-param-reassign": "off",
+    "linebreak-style": "off",
+    "no-unused-vars": "off",
+    "global-require": "off",
+    "prefer-const": "off",
+    "no-shadow": "off",
+    "object": "off"
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "browser": true
+  }
+}
