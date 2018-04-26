@@ -5,13 +5,13 @@ app(
   null,
   null,
   () => (
-    <div>
-      <button onclick={() => hc.toast('666')}>toast</button>
+    <div class="button-container">
+      <button onclick={() => hc.toast('消息提示')}>toast</button>
       <button onclick={() => {
         const close = hc.loading();
         setTimeout(close, 2000);
       }}>loading</button>
-      <button onclick={() => hc.alert('666')}>alert</button>
+      <button onclick={() => hc.alert('消息提示')}>alert</button>
     </div>
   ),
   document.getElementById('app'),
