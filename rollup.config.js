@@ -21,6 +21,10 @@ export default {
   output: {
     file: DEST_PATH,
     format: 'umd',
+    globals: {
+      hyperapp: 'hyperapp',
+      '@hyperapp/transitions': 'transitions',
+    },
   },
   plugins: [
     postcss({
@@ -38,9 +42,10 @@ export default {
           encoding: 'utf-8',
         },
       }),
+      filesize(),
     ]),
     progress(),
-    filesize(),
     conditional(!prod, [browsersync()]),
   ],
+  external: ['hyperapp', '@hyperapp/transitions'],
 };

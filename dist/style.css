@@ -1,0 +1,42 @@
+.hc-alert-mask {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.25);
+}
+.hc-alert-container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 12.45rem;
+  -webkit-transform: translate(-50%, -72%);
+          transform: translate(-50%, -72%);
+  border-radius: 12px;
+  background-color: #fff;
+  font-size: .65rem;
+  text-align: center;
+}
+.hc-alert-content {
+  position: relative;
+  padding: 1.05rem;
+  line-height: 1.5;
+}
+.hc-alert-content:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: #e6e6e6;
+  -webkit-transform: scaleY(0.5);
+          transform: scaleY(0.5);
+}
+.hc-alert-button {
+  height: 2.2rem;
+  line-height: 2.2rem;
+  font-size: .75rem;
+  color: #fe6e35;
+}

@@ -4,7 +4,7 @@
   "description": "A feedback components based on hyperapp.js",
   "main": "dist/index.js",
   "scripts": {
-    "start": "node_modules/.bin/rollup -c rollup.config.js",
+    "start": "node_modules/.bin/rollup -c rollup.config.js --watch",
     "prod": "node_modules/.bin/rollup -c rollup.config.js --environment build:production"
   },
   "license": "MIT",
@@ -12,6 +12,7 @@
     "hyperapp": "^1.2.5"
   },
   "devDependencies": {
+    "@hyperapp/transitions": "^1.0.2",
     "autoprefixer": "^7.2.3",
     "babel-core": "^6.26.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
