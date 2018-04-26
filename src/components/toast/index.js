@@ -22,19 +22,26 @@ const view = state =>
   ) : null);
 
 export default container => (options) => {
+  if (!options) return;
+
+  let opts = {
+    duration: 2000,
+    type: 'info',
+  };
+
   if (typeof options === 'string') {
-    options = {
-      content: options,
-      duration: 2000,
-      type: 'info',
-    };
+    opts.content = options;
   }
 
-  const toast = app({ ...state, ...options }, actions, view, container);
+  if (typeof options === 'object') {
+    opts = { ...opts, ...options };
+  }
 
-  if (options.type !== 'loading') {
-    setTimeout(toast.onClose, options.duration);
+  const toast = app({ ...state, ...opts }, actions, view, container);
+
+  if (opts.type !== 'loading') {
+    setTimeout(toast.onClose, opts.duration);
   } else {
-    return toast;
+    return toast.onClose;
   }
 };

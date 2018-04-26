@@ -17,7 +17,10 @@ const view = (state, actions) =>
     <div class="hc-alert-mask">
       <div class="hc-alert-container">
         <div class="hc-alert-content">{state.content}</div>
-        <div class="hc-alert-button" onclick={actions.onClose}>
+        <div class="hc-alert-button" onclick={() => {
+          state.onConfirm && state.onConfirm();
+          actions.onClose();
+        }}>
           {state.confirmText}
         </div>
       </div>
@@ -25,6 +28,8 @@ const view = (state, actions) =>
   ) : null);
 
 export default container => (options) => {
+  if (!options) return;
+
   if (typeof options === 'string') {
     options = {
       content: options,

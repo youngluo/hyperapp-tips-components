@@ -7,7 +7,10 @@ app(
   () => (
     <div>
       <button onclick={() => hc.toast('666')}>toast</button>
-      <button onclick={() => hc.toast('666')}>loading</button>
+      <button onclick={() => {
+        const close = hc.loading();
+        setTimeout(close, 2000);
+      }}>loading</button>
       <button onclick={() => hc.alert('666')}>alert</button>
     </div>
   ),

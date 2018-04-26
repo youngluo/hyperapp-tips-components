@@ -10,15 +10,19 @@ export default {
   alert: Alert(container),
   toast: Toast(container),
   loading(options) {
+    let opts = {
+      type: 'loading',
+      content: 'loading',
+    };
+
     if (typeof options === 'string') {
-      options = {
-        content: options,
-        type: 'loading',
-      };
+      opts.content = options;
     }
 
-    options.type = 'loading';
+    if (typeof options === 'object') {
+      opts = { ...opts, ...options };
+    }
 
-    Toast(container)(options);
+    return Toast(container)(opts);
   },
 };

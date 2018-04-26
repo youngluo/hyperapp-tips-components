@@ -4,6 +4,12 @@
     (factory(global.hyperapp));
 }(this, (function (hyperapp) { 'use strict';
 
+    var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
+      return typeof obj;
+    } : function (obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+
     var _extends = Object.assign || function (target) {
       for (var i = 1; i < arguments.length; i++) {
         var source = arguments[i];
@@ -46,7 +52,10 @@
           ),
           hyperapp.h(
             'div',
-            { 'class': 'hc-alert-button', onclick: actions.onClose },
+            { 'class': 'hc-alert-button', onclick: function onclick() {
+                state.onConfirm && state.onConfirm();
+                actions.onClose();
+              } },
             state.confirmText
           )
         )
@@ -55,6 +64,8 @@
 
     var Alert = (function (container) {
       return function (options) {
+        if (!options) return;
+
         if (typeof options === 'string') {
           options = {
             content: options,
@@ -97,20 +108,27 @@
 
     var Toast = (function (container) {
       return function (options) {
+        if (!options) return;
+
+        var opts = {
+          duration: 2000,
+          type: 'info'
+        };
+
         if (typeof options === 'string') {
-          options = {
-            content: options,
-            duration: 2000,
-            type: 'info'
-          };
+          opts.content = options;
         }
 
-        var toast = hyperapp.app(_extends({}, state$1, options), actions$1, view$1, container);
+        if ((typeof options === 'undefined' ? 'undefined' : _typeof(options)) === 'object') {
+          opts = _extends({}, opts, options);
+        }
 
-        if (options.type !== 'loading') {
-          setTimeout(toast.onClose, options.duration);
+        var toast = hyperapp.app(_extends({}, state$1, opts), actions$1, view$1, container);
+
+        if (opts.type !== 'loading') {
+          setTimeout(toast.onClose, opts.duration);
         } else {
-          return toast;
+          return toast.onClose;
         }
       };
     });
@@ -124,16 +142,20 @@
       alert: Alert(container),
       toast: Toast(container),
       loading: function loading(options) {
+        var opts = {
+          type: 'loading',
+          content: 'loading'
+        };
+
         if (typeof options === 'string') {
-          options = {
-            content: options,
-            type: 'loading'
-          };
+          opts.content = options;
         }
 
-        options.type = 'loading';
+        if ((typeof options === 'undefined' ? 'undefined' : _typeof(options)) === 'object') {
+          opts = _extends({}, opts, options);
+        }
 
-        Toast(container)(options);
+        return Toast(container)(opts);
       }
     };
 
@@ -151,7 +173,8 @@
         hyperapp.h(
           'button',
           { onclick: function onclick() {
-              return hc.toast('666');
+              var close = hc.loading();
+              setTimeout(close, 2000);
             } },
           'loading'
         ),
