@@ -1,11 +1,11 @@
 {
-  "name": "hc-feedback",
+  "name": "hc-tips",
   "version": "1.0.0",
-  "description": "A feedback components based on hyperapp.js",
+  "description": "A tips components based on hyperapp.js",
   "main": "dist/index.js",
   "scripts": {
     "start": "node_modules/.bin/rollup -c rollup.config.js --watch",
-    "prod": "node_modules/.bin/rollup -c rollup.config.js --environment build:production"
+    "prod": "node_modules/.bin/rollup -c rollup.config.prod.js"
   },
   "license": "MIT",
   "peerDependencies": {
@@ -28,7 +28,6 @@
     "rollup-plugin-babel": "^3.0.4",
     "rollup-plugin-browsersync": "^0.2.6",
     "rollup-plugin-commonjs": "^9.1.0",
-    "rollup-plugin-conditional": "^1.1.1",
     "rollup-plugin-filesize": "^1.5.0",
     "rollup-plugin-license": "^0.6.0",
     "rollup-plugin-postcss": "^1.6.1",

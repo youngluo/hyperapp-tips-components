@@ -13,7 +13,7 @@ const actions = {
 
 const view = state =>
   (state.visible ? (
-    <div class="hc-toast-wrapper">
+    <div class="hc-toast-mask">
       <div class="hc-toast-container">
         <i class={`hc-toast-icon hc-toast-icon-${state.type}`} />
         {state.content ? <p class="hc-toast-content">{state.content}</p> : null}

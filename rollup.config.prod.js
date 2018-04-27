@@ -1,12 +1,14 @@
-import browsersync from 'rollup-plugin-browsersync';
 import commonjs from 'rollup-plugin-commonjs';
+import filesize from 'rollup-plugin-filesize';
 import progress from 'rollup-plugin-progress';
 import postcss from 'rollup-plugin-postcss';
+import license from 'rollup-plugin-license';
+import uglify from 'rollup-plugin-uglify';
 import babel from 'rollup-plugin-babel';
 import path from 'path';
 
-const SRC_PATH = path.join(__dirname, 'src/index.js');
-const STYLE_PATH = path.join(__dirname, 'dist/style.css');
+const SRC_PATH = path.join(__dirname, 'src/components/index.js');
+const STYLE_PATH = path.join(__dirname, 'dist/style.min.css');
 const BANNER_PATH = path.join(__dirname, 'banner.text');
 const DEST_PATH = path.join(__dirname, 'dist/index.js');
 
@@ -24,13 +26,21 @@ export default {
   plugins: [
     postcss({
       extract: STYLE_PATH,
+      minimize: true,
     }),
     babel(),
     commonjs({
       extensions: ['.js'],
     }),
     progress(),
-    browsersync(),
+    uglify(),
+    license({
+      banner: {
+        file: BANNER_PATH,
+        encoding: 'utf-8',
+      },
+    }),
+    filesize(),
   ],
   external: ['hyperapp', '@hyperapp/transitions'],
 };

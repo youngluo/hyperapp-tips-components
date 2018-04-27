@@ -20,6 +20,7 @@
     "linebreak-style": "off",
     "no-unused-vars": "off",
     "global-require": "off",
+    "no-script-url": "off",
     "prefer-const": "off",
     "no-shadow": "off",
     "object": "off"

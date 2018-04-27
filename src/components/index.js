@@ -1,13 +1,24 @@
-import Alert from './alert';
+import Dialog from './dialog';
 import Toast from './toast';
 
 const container = document.createElement('div');
 container.setAttribute('role', 'dialog');
 document.body.appendChild(container);
-document.body.ontouchstart = () => {};
+document.body.ontouchstart = () => { };
 
 export default {
-  alert: Alert(container),
+  alert(options) {
+    if (!options) return;
+
+    if (typeof options === 'string') {
+      options = {
+        content: options,
+      };
+    }
+
+    Dialog(container)({ ...options, showCancel: false });
+  },
+  confirm: Dialog(container),
   toast: Toast(container),
   loading(options) {
     let opts = {
