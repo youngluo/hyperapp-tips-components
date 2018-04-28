@@ -28,15 +28,15 @@
 
 ## 方法
 
-* tosat(options: object | content: string)
+* tosat (options: object | content: string)
 
-* loading(options: object | content: string)
+* loading (options: object | content: string)
 
-* alert(options: object | content: string)
+* alert (options: object | content: string)
 
-* confirm(options: object | content: string)
+* confirm (options: object | content: string)
 
-### options (toast | loading)
+### options * (toast | loading) *
 
 #### content
 
@@ -58,7 +58,7 @@ optional: `'info'`, `'error'`
 
 default: `'info'`
 
-### options (alert | confirm)
+### options * (alert | confirm) *
 
 #### content
 
