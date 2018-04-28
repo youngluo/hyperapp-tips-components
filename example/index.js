@@ -161,7 +161,9 @@
 
       var toast = hyperapp.app(_extends({}, state$1, opts), actions$1, view$1, container);
 
-      if (opts.type !== 'loading') ; else {
+      if (opts.type !== 'loading') {
+        setTimeout(toast.onClose, opts.duration);
+      } else {
         return toast.onClose;
       }
     };
