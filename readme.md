@@ -36,7 +36,7 @@
 
 * confirm (options: object | content: string)
 
-### options * (toast | loading) *
+### options *(toast | loading)*
 
 #### content
 
@@ -58,7 +58,7 @@ optional: `'info'`, `'error'`
 
 default: `'info'`
 
-### options * (alert | confirm) *
+### options *(alert | confirm)*
 
 #### content
 
