@@ -1,10 +1,10 @@
 # hc-tips
 
-> 基于hyperapp.js和WeUI的Tips组件
-
 [![npm](https://img.shields.io/npm/v/hc-tips.svg)](https://www.npmjs.com/package/hc-tips)
 [![npm](https://img.shields.io/npm/dm/hc-tips.svg)](https://www.npmjs.com/package/hc-tips)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/youngluo/hyperapp-tips-components/blob/master/LICENSE)
+
+> 基于hyperapp.js和WeUI的Tips组件
 
 ## 安装
 
@@ -53,6 +53,8 @@ default: 2000
 #### type
 
 type: `string`
+
+optional: `'info'`, `'error'`
 
 default: `'info'`
 
