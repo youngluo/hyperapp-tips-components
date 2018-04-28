@@ -1,0 +1,11 @@
+example/
+node_modules/
+src/index.js
+.editorconfig
+.eslintignore
+.eslintrc
+banner.text
+index.html
+postcss.config.js
+rollup.config.js
+rollup.config.prod.js

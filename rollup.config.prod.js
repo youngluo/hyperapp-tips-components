@@ -26,7 +26,7 @@ export default {
   plugins: [
     postcss({
       extract: STYLE_PATH,
-      minimize: true,
+      plugins: [require('postcss-clean')],
     }),
     babel(),
     commonjs({

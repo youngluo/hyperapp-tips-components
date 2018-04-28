@@ -40,7 +40,7 @@ export default container => (options) => {
   const toast = app({ ...state, ...opts }, actions, view, container);
 
   if (opts.type !== 'loading') {
-    setTimeout(toast.onClose, opts.duration);
+    // setTimeout(toast.onClose, opts.duration);
   } else {
     return toast.onClose;
   }

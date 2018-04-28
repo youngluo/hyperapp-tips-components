@@ -5,7 +5,9 @@ app(
   null,
   null,
   () => (
-    <div class="button-container">
+    <div class="hc-container">
+      <h1>hc-tips</h1>
+      <p>基于hyperapp.js和WeUI的Tips组件</p>
       <button onclick={() => hc.toast('消息提示')}>消息提示</button>
       <button onclick={() => hc.toast({ content: '错误提示', type: 'error' })}>错误提示</button>
       <button onclick={() => {

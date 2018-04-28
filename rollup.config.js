@@ -7,8 +7,7 @@ import path from 'path';
 
 const SRC_PATH = path.join(__dirname, 'src/index.js');
 const STYLE_PATH = path.join(__dirname, 'dist/style.css');
-const BANNER_PATH = path.join(__dirname, 'banner.text');
-const DEST_PATH = path.join(__dirname, 'dist/index.js');
+const DEST_PATH = path.join(__dirname, 'example/index.js');
 
 export default {
   input: SRC_PATH,
