@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "node_modules/.bin/rollup -c rollup.config.js --watch",
-    "prod": "node_modules/.bin/rollup -c rollup.config.prod.js"
+    "prod": "node_modules/.bin/rollup -c rollup.config.prod.js",
+    "test": "jest --coverage --no-cache"
   },
   "license": "MIT",
   "peerDependencies": {
@@ -15,6 +16,7 @@
     "@hyperapp/transitions": "^1.0.2",
     "autoprefixer": "^7.2.3",
     "babel-core": "^6.26.0",
+    "babel-jest": "^22.4.4",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-es2015-rollup": "^3.0.0",
     "babel-preset-stage-0": "^6.24.1",
@@ -22,10 +24,12 @@
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
     "hyperapp": "^1.2.5",
+    "jest": "^22.4.4",
     "less": "^2.7.3",
     "postcss-clean": "^1.1.0",
     "postcss-image-inliner": "^2.0.0",
     "postcss-merge-rules": "^2.1.2",
+    "regenerator-runtime": "^0.11.1",
     "rollup": "^0.58.2",
     "rollup-plugin-babel": "^3.0.4",
     "rollup-plugin-browsersync": "^0.2.6",

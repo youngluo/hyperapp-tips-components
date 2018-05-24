@@ -15,6 +15,6 @@ export default container => ({
 
     options = paramProcessor(content, options);
 
-    Toast({ ...defaultOptions, ...options }, container);
+    return Toast({ ...defaultOptions, ...options }, container);
   },
 });

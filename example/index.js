@@ -24,6 +24,14 @@
     return target;
   };
 
+  var paramProcessor = function paramProcessor(content, options) {
+    if ((typeof content === 'undefined' ? 'undefined' : _typeof(content)) === 'object') {
+      return content;
+    }
+
+    return _extends({}, options, { content: content });
+  };
+
   // import { Enter, Exit } from '@hyperapp/transitions';
 
   var state = {
@@ -91,25 +99,31 @@
     ) : null;
   };
 
-  var Dialog = (function (container) {
-    return function (options) {
-      if (!options) return;
+  var Dialog = (function (options, container) {
+    if (!container) return;
 
-      var opts = {
-        confirmText: '确定',
-        cancelText: '取消',
-        showCancel: true
-      };
+    var defaultOptions = {
+      cancelText: ' cancel',
+      confirmText: 'ok',
+      showCancel: true
+    };
 
-      if (typeof options === 'string') {
-        opts.content = options;
+    hyperapp.app(_extends({}, state, defaultOptions, options), actions, view, container);
+  });
+
+  var Dialog$1 = (function (container) {
+    return {
+      alert: function alert(content, options) {
+        options = paramProcessor(content, options);
+        options.showCancel = false;
+
+        Dialog(options, container);
+      },
+      confirm: function confirm(content, options) {
+        options = paramProcessor(content, options);
+
+        Dialog(options, container);
       }
-
-      if ((typeof options === 'undefined' ? 'undefined' : _typeof(options)) === 'object') {
-        opts = _extends({}, opts, options);
-      }
-
-      hyperapp.app(_extends({}, state, opts), actions, view, container);
     };
   });
 
@@ -142,29 +156,41 @@
     ) : null;
   };
 
-  var Toast = (function (container) {
-    return function (options) {
-      if (!options) return;
+  var Toast = (function (options, container) {
+    if (!container) return;
 
-      var opts = {
-        duration: 2000,
-        type: 'info'
-      };
+    var defaultOptions = {
+      duration: 2000,
+      type: 'info'
+    };
 
-      if (typeof options === 'string') {
-        opts.content = options;
-      }
+    options = _extends({}, defaultOptions, options);
 
-      if ((typeof options === 'undefined' ? 'undefined' : _typeof(options)) === 'object') {
-        opts = _extends({}, opts, options);
-      }
+    var toast = hyperapp.app(_extends({}, state$1, options), actions$1, view$1, container);
 
-      var toast = hyperapp.app(_extends({}, state$1, opts), actions$1, view$1, container);
+    if (options.type === 'loading') {
+      return toast.onClose;
+    }
 
-      if (opts.type !== 'loading') {
-        setTimeout(toast.onClose, opts.duration);
-      } else {
-        return toast.onClose;
+    setTimeout(toast.onClose, options.duration);
+  });
+
+  var Toast$1 = (function (container) {
+    return {
+      toast: function toast(content, options) {
+        options = paramProcessor(content, options);
+
+        Toast(options, container);
+      },
+      loading: function loading(content, options) {
+        var defaultOptions = {
+          content: 'loading',
+          type: 'loading'
+        };
+
+        options = paramProcessor(content, options);
+
+        return Toast(_extends({}, defaultOptions, options), container);
       }
     };
   });
@@ -174,38 +200,7 @@
   document.body.appendChild(container);
   document.body.ontouchstart = function () {};
 
-  var hc = {
-    alert: function alert(options) {
-      if (!options) return;
-
-      if (typeof options === 'string') {
-        options = {
-          content: options
-        };
-      }
-
-      Dialog(container)(_extends({}, options, { showCancel: false }));
-    },
-
-    confirm: Dialog(container),
-    toast: Toast(container),
-    loading: function loading(options) {
-      var opts = {
-        type: 'loading',
-        content: 'loading'
-      };
-
-      if (typeof options === 'string') {
-        opts.content = options;
-      }
-
-      if ((typeof options === 'undefined' ? 'undefined' : _typeof(options)) === 'object') {
-        opts = _extends({}, opts, options);
-      }
-
-      return Toast(container)(opts);
-    }
-  };
+  var hc = _extends({}, Dialog$1(container), Toast$1(container));
 
   hyperapp.app(null, null, function () {
     return hyperapp.h(
