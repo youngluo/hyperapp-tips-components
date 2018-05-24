@@ -1,47 +1,20 @@
-import { app, h } from 'hyperapp';
-import './index.less';
+import { paramProcessor } from '../../utils';
+import Toast from './toast';
 
-const state = {
-  visible: true,
-};
+export default container => ({
+  toast(content, options) {
+    options = paramProcessor(content, options);
 
-const actions = {
-  onClose() {
-    return state => ({ visible: false });
+    Toast(options, container);
   },
-};
+  loading(content, options) {
+    const defaultOptions = {
+      content: 'loading',
+      type: 'loading',
+    };
 
-const view = state =>
-  (state.visible ? (
-    <div class="hc-toast-mask">
-      <div class="hc-toast-container">
-        <i class={`hc-toast-icon hc-toast-icon-${state.type}`} />
-        {state.content ? <p class="hc-toast-content">{state.content}</p> : null}
-      </div>
-    </div>
-  ) : null);
+    options = paramProcessor(content, options);
 
-export default container => (options) => {
-  if (!options) return;
-
-  let opts = {
-    duration: 2000,
-    type: 'info',
-  };
-
-  if (typeof options === 'string') {
-    opts.content = options;
-  }
-
-  if (typeof options === 'object') {
-    opts = { ...opts, ...options };
-  }
-
-  const toast = app({ ...state, ...opts }, actions, view, container);
-
-  if (opts.type !== 'loading') {
-    setTimeout(toast.onClose, opts.duration);
-  } else {
-    return toast.onClose;
-  }
-};
+    Toast({ ...defaultOptions, ...options }, container);
+  },
+});
