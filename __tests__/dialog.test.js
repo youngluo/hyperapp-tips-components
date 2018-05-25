@@ -1,5 +1,5 @@
 import { app, h } from 'hyperapp';
-import HC from '../src/components';
+import HC from '../dist';
 
 beforeEach(() => {
   document.body.innerHTML = '';

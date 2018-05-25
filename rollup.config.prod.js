@@ -33,7 +33,7 @@ export default {
       extensions: ['.js'],
     }),
     progress(),
-    uglify(),
+    // uglify(),
     license({
       banner: {
         file: BANNER_PATH,
