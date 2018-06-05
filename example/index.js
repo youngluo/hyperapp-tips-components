@@ -4,35 +4,23 @@
   (factory(global.hyperapp));
 }(this, (function (hyperapp) { 'use strict';
 
-  var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
-    return typeof obj;
-  } : function (obj) {
-    return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-  };
+  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-  var _extends = Object.assign || function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
-
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
-    }
-
-    return target;
-  };
+  var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
   var paramProcessor = function paramProcessor(content, options) {
+    if (!content) return;
+
     if ((typeof content === 'undefined' ? 'undefined' : _typeof(content)) === 'object') {
       return content;
     }
 
-    return _extends({}, options, { content: content });
+    if (typeof content === 'string') {
+      return _extends({}, options, { content: content });
+    }
   };
 
-  // import { Enter, Exit } from '@hyperapp/transitions';
+  var _extends$1 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
   var state = {
     visible: true
@@ -103,12 +91,12 @@
     if (!container) return;
 
     var defaultOptions = {
-      cancelText: ' cancel',
+      cancelText: 'cancel',
       confirmText: 'ok',
       showCancel: true
     };
 
-    hyperapp.app(_extends({}, state, defaultOptions, options), actions, view, container);
+    hyperapp.app(_extends$1({}, state, defaultOptions, options), actions, view, container);
   });
 
   var Dialog$1 = (function (container) {
@@ -126,6 +114,8 @@
       }
     };
   });
+
+  var _extends$2 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
   var state$1 = {
     visible: true
@@ -164,9 +154,9 @@
       type: 'info'
     };
 
-    options = _extends({}, defaultOptions, options);
+    options = _extends$2({}, defaultOptions, options);
 
-    var toast = hyperapp.app(_extends({}, state$1, options), actions$1, view$1, container);
+    var toast = hyperapp.app(_extends$2({}, state$1, options), actions$1, view$1, container);
 
     if (options.type === 'loading') {
       return toast.onClose;
@@ -174,6 +164,8 @@
 
     setTimeout(toast.onClose, options.duration);
   });
+
+  var _extends$3 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
   var Toast$1 = (function (container) {
     return {
@@ -190,17 +182,19 @@
 
         options = paramProcessor(content, options);
 
-        return Toast(_extends({}, defaultOptions, options), container);
+        return Toast(_extends$3({}, defaultOptions, options), container);
       }
     };
   });
+
+  var _extends$4 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
   var container = document.createElement('div');
   container.setAttribute('role', 'dialog');
   document.body.appendChild(container);
   document.body.ontouchstart = function () {};
 
-  var hc = _extends({}, Dialog$1(container), Toast$1(container));
+  var hc = _extends$4({}, Dialog$1(container), Toast$1(container));
 
   hyperapp.app(null, null, function () {
     return hyperapp.h(
@@ -214,7 +208,7 @@
       hyperapp.h(
         'p',
         null,
-        '\u57FA\u4E8Ehyperapp.js\u548CWeUI\u7684Tips\u7EC4\u4EF6'
+        '\u57FA\u4E8E hyperapp.js \u548C WeUI \u7684 Tips \u7EC4\u4EF6'
       ),
       hyperapp.h(
         'button',

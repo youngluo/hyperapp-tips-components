@@ -52,7 +52,7 @@ export default (options, container) => {
   if (!container) return;
 
   const defaultOptions = {
-    cancelText: ' cancel',
+    cancelText: 'cancel',
     confirmText: 'ok',
     showCancel: true,
   };
